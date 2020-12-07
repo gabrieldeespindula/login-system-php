@@ -1,3 +1,10 @@
+<?php
+// connecting
+require_once 'dbconnect.php';
+
+
+?>
+
 <html>
 <head>
     <title>Login</title>
