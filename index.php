@@ -11,6 +11,14 @@ if(isset($_POST['button-login'])):
     if (empty($login) or empty($password)):
         $errors[] = "<li> The login / password field needs to be filled. </li>";
     else:
+        $sql = "SELECT login FROM user WHERE login = '$login'";
+        $result = mysqli_query($connect, $sql);
+
+        if(mysqli_num_rows($result) > 0):
+
+        else:
+            $errors[] = "<li> User not found.</li>";
+        endif;
     endif;
 
 endif;
