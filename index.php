@@ -2,13 +2,15 @@
 // connecting
 require_once 'dbconnect.php';
 
+// sessions
+session_start();
+
 
 // send button
 if(isset($_POST['button-login'])):
     $errors = array();
     $login = mysqli_escape_string($connect, $_POST['login']);
-    $password = mysqli_escape_string($connect, $_POST['password']);
-    $password = md5($password);
+    $password = md5(mysqli_escape_string($connect, $_POST['password']));
     
     if (empty($login) or empty($password)):
         $errors[] = "<li> The login / password field needs to be filled. </li>";
@@ -21,7 +23,10 @@ if(isset($_POST['button-login'])):
             $result = mysqli_query($connect, $sql);
 
             if(mysqli_num_rows($result) == 1):
-
+                $data = mysqli_fetch_array($result);
+                $_SESSION['logged'] = true;
+                $_SESSION['id-user'] = $data['id'];
+                header('location: home.php');
             else:
                 $errors[] = "<li> Login and password don´t match. </li>";
             endif;
