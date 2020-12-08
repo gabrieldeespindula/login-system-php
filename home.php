@@ -5,11 +5,17 @@ require_once 'dbconnect.php';
 // sessions
 session_start();
 
+// verification
+if(!isset($_SESSION['logged'])):
+    header ('location: index.php');
+endif;
+
 //data
 $id = $_SESSION['id_user'];
 $sql = "SELECT * FROM user WHERE id = '$id'";
 $result = mysqli_query($connect, $sql);
 $data = mysqli_fetch_array($result);
+mysqli_close($connect);
 ?>
 
 <html>
