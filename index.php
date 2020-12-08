@@ -25,7 +25,7 @@ if(isset($_POST['button-login'])):
             if(mysqli_num_rows($result) == 1):
                 $data = mysqli_fetch_array($result);
                 $_SESSION['logged'] = true;
-                $_SESSION['id-user'] = $data['id'];
+                $_SESSION['id_user'] = $data['id'];
                 header('location: home.php');
             else:
                 $errors[] = "<li> Login and password don´t match. </li>";
