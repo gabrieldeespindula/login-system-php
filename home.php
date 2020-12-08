@@ -20,5 +20,6 @@ $data = mysqli_fetch_array($result);
 </head>
 <body>
     <h1>Olá <?php echo $data['name']?></h1>
+    <a href="logout.php">Log Out</a>
 </body>
 </html>
